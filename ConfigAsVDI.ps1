@@ -91,25 +91,26 @@ If ($Edition.Edition -ne "Enterprise")
 
 
 # Configure Constants:
-$BranchCache = "False"
-$Cortana = "False"
-$DiagService = "False"
-$EAPService = "False"
-$EFS = "False"
-$FileHistoryService = "False"
+# True means disable, False means keep
+$BranchCache = "True"
+$Cortana = "True"
+$DiagService = "True"
+$EAPService = "True"
+$EFS = "True"
+$FileHistoryService = "True"
 $iSCSI = "False"
 $MachPass = "True"
-$MSSignInService = "False"
+$MSSignInService = "True"
 $OneDrive = "False"
-$PeerCache = "False"
+$PeerCache = "True"
 $Search = "False"
 $SMB1 = "False"
 $SMBPerf = "False"
-$Themes = "False"
-$Touch = "False"
+$Themes = "True"
+$Touch = "True"
 
-$StartApps = "False"
-$StoreApps = "False"
+$StartApps = "True"
+$StoreApps = "True"
 
 $Install_NetFX3 = "False"
 $NetFX3_Source = "D:\Sources\SxS"
@@ -877,7 +878,6 @@ if ($Result.ReturnValue -eq 0){
    Write-Host "Remote Connection settings changed sucessfully" -ForegroundColor Cyan
 } else {
    Write-Host ("Failed to change Remote Connections setting(s), return code "+$Result.ReturnValue) -ForegroundColor Red
-   exit
 }
 # NLA (Network Level Authentication)
 $NLA = Get-WmiObject -Class Win32_TSGeneralSetting -Namespace root\CIMV2\TerminalServices -Authentication PacketPrivacy
@@ -887,7 +887,6 @@ if ($NLA.UserAuthenticationRequired -eq $NLAEnable){
    Write-Host "NLA setting changed sucessfully" -ForegroundColor Cyan
 } else {
    Write-Host "Failed to change NLA setting" -ForegroundColor Red
-   exit
 }
 Write-Host ""
 Write-Host ""
